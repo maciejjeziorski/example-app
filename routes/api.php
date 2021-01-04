@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('/projects', ProjectController::class)
+    ->except(['create']);
+
+Route::resource('/projects/{project}/tasks', TaskController::class);
+
+Route::patch('/projects/{project}/tasks/{task}/status', [TaskController::class, 'updateStatus'])
+    ->name('tasks.update_status');
